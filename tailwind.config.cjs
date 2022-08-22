@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  purge: ['./src/**/**/**/*.{html,js,svelte}'],
-  darkMode: false, // or 'media' or 'class'
+  content: ['./src/**/**/**/*.{html,js,svelte}'],
   theme: {
     fontFamily: {
       primary: ['"Playfair Display"', 'serif'],
