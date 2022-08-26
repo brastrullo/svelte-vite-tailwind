@@ -56,7 +56,7 @@
       if (isIntersecting) {
         currentIndex = Number(entry.target.dataset.index);
         if (currentIndex === $objectArr.length) {
-          // FIX: sometimes runs twice
+          // FIX: sometimes runs twice (2 entries: scroll in/out)
           reloadPanels()
         }
       }
