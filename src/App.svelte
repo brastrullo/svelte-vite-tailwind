@@ -1,6 +1,6 @@
 <script>
-  import { getData, data, dataState, sectionsLoaded, isOmniOpen } from "./lib/utils/store";
-  import { LOADED, LOADING } from './lib/utils/constants';
+  import { getData, data, dataState, sectionsLoaded, isOmniOpen, pageIndex, prevPageIndex } from "./lib/utils/store";
+  import { LOADING } from './lib/utils/constants';
   import { onMount } from "svelte";
   import Home from "./lib/Home/index.svelte";
   import OverlayUI from "./lib/OverlayUI/index.svelte";
@@ -17,16 +17,15 @@
   let scrollTop;
   let ticking = false;
   let containerRect;
-  let pageIndex;
   let closeAllDetails;
   let selectModal;
   
   const callback = (entries, observer) => {
-    let prevPageIndex = pageIndex;
+    prevPageIndex.set($pageIndex);
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        pageIndex = Number(entry.target.dataset.index);
-        if (pageIndex !== 1 && prevPageIndex === 1) {
+        pageIndex.set(Number(entry.target.dataset.index));
+        if ($pageIndex !== 1 && $prevPageIndex === 1) {
           console.log('leaving the experience section');
           closeAllDetails();
         }
@@ -52,36 +51,34 @@
     }
   };
 
-  $: if (__main) {
-    containerRect = __main.getBoundingClientRect();
-  }
-
-  onMount(() => {
-    window.scroll(0,0);
-    window.addEventListener('resize', debounce(resizeEvent, 200, { leading: false }));
-  });
-
   $: if ($sectionsLoaded) {
     const entries = document.querySelectorAll('.vscroll-item');
     entries.forEach(target => {
       observer.observe(target)
-    })
+    })    
   }
+
+  $: if (__main) containerRect = __main.getBoundingClientRect();
 
   $: if (__main) {
     __main.addEventListener('scroll', function(e) {
       if (!ticking) {
         requestAnimationFrame(() => {
           scrollTop = e.target.scrollTop;
-          if ($dataState === null){
-            promise = getData();
-          }
           ticking = false;
         });
         ticking = true;
       }
     });
   }
+
+  onMount(() => {
+    if ($dataState === null){
+      promise = getData();
+    }
+    window.scroll(0,0);
+    window.addEventListener('resize', debounce(resizeEvent, 200, { leading: false }));
+  });
 </script>
 
 <svelte:window
@@ -94,7 +91,7 @@
     <Home {selectModal} classList="vscroll-item" />
     {#if $data}
       <Section classList="vscroll-item" index={1} sectionTitle={$data.headers[1]}>
-        <Experience bind:closeAllDetails {data} {pageIndex} />
+        <Experience bind:closeAllDetails {data} />
       </Section>
       <Section classList="vscroll-item" index={2} sectionTitle={'Projects'}>
         <Projects {data} />
@@ -106,7 +103,7 @@
         <About {sectionsLoaded} {data} />
       </Section>
     {:else}
-      <div class="h-screen w-screen" />
+      <div class="h-screen w-screen"/>
     {/if}
   </main>
   <OverlayUI bind:selectModal {__main} {scrollTop} {innerHeight} {innerWidth} />

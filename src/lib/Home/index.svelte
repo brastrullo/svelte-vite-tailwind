@@ -61,10 +61,9 @@
   </div>
   <span class="version absolute bottom-2 left-2 text-gray-200 text-xs text-bold">v1.0</span>
   <div class="scroll-loading absolute bottom-0 left-0 w-screen">
-    {#if $dataState === null}
-      <span transition:fade class="animate-pulse text-gray-500 scrolldown items-center left-0 bottom-0 w-full flex justify-center">scroll down</span>
-      <ScrollDown />
-    {:else if $dataState === LOADING}
+    <span transition:fade class="animate-pulse text-gray-500 scrolldown items-center left-0 bottom-0 w-full flex justify-center">scroll down</span>
+    <ScrollDown />
+    {#if $dataState === LOADING}
       <Loading />
     {/if}
   </div>

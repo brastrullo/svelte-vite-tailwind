@@ -1,4 +1,6 @@
 <script>
+  import { fly, fade } from 'svelte/transition';
+  import { quintOut } from 'svelte/easing';
   import Close from '../icons/Close.svelte';
   export let toggleModal;
   let modal;
@@ -17,8 +19,8 @@
     @apply h-auto w-auto;
   }
 </style>
-<div on:click={modalHandler} class="h-screen w-screen top-0 left-0 fixed flex flex-col justify-center items-center bg-opacity-20 bg-gray-800 backdrop-blur-sm">
-  <div bind:this={modal} class="modal-container relative bg-white shadow-md rounded-md">
+<div transition:fade on:click={modalHandler} class="h-screen w-screen top-0 left-0 fixed flex flex-col justify-center items-center bg-opacity-80 bg-gray-800 backdrop-blur">
+  <div transition:fly={{duration: 250, x: 800, opacity: 0, easing: quintOut}} bind:this={modal} class="modal-container relative bg-white shadow-md rounded-md">
     <button class="absolute top-0 right-0" on:click={toggleModal}><Close /></button>
     <div class="h-full w-full p-8">
       <slot>Provide data</slot>

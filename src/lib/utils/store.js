@@ -16,6 +16,8 @@ export const data = writable(undefined);
 export const dataState = writable(null);
 export const sectionsLoaded = writable(null);
 export const isOmniOpen = writable(false);
+export const pageIndex = writable(undefined);
+export const prevPageIndex = writable(undefined);
 
 const transformer = ({
   body,
