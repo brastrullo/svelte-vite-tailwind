@@ -3,7 +3,7 @@
 import { onMount } from "svelte";
 import { fly } from 'svelte/transition';
 import { sineOut } from 'svelte/easing';
-const devArray = ['frontend', 'user experience', 'javascript','creative', 'socially-distanced'];
+const devArray = ['frontend', 'user experience', 'javascript','creative', 'passionate'];
 let i = 0;
 const clickHandler = () => {
   i !== devArray.length - 1
