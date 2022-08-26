@@ -2,14 +2,16 @@
   export let opacity = '1';
   export let colour = '#000';
   export let className = '';
+  export let height = '3rem';
+  export let width = '2rem';
 </script>
 
 <svg
   xmlns="http://www.w3.org/2000/svg"
   class={`fill-current ${className}`}
   viewBox="0 0 24 24"
-  height='3rem'
-  width='2rem'
+  {height}
+  {width}
   fill={colour}
   fill-opacity={opacity}
   fill-rule="evenodd"
