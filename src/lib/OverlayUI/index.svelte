@@ -20,6 +20,7 @@
   let showUIBanner = false;
   let modalComponent;
   let dataLoaded = false;
+
   $: showHeader = innerHeight && scrollTop + (innerHeight/2) >= innerHeight;
   $: if ($dataState === LOADED && !dataLoaded) {
     showUIBanner = true;
@@ -59,35 +60,6 @@
 
 </script>
 
-<style>
-  .btn::before {
-    content: '';
-    padding: 0 .25rem 0;
-    font-size: .75rem;
-    color: rgb(90, 90, 90);
-    background: rgba(255,255,255,0.7);
-    border-radius: 3px;
-  }
-  .btn:hover::before {
-    color: rgb(66, 125, 253);
-  }
-  .share::before {
-    content: 'share';
-    pointer-events: all;
-  }
-  .contact::before {
-    content: 'contact';
-    position: absolute;
-    right: 1.75rem;
-    pointer-events: all;
-  }
-  .download::before {
-    content: 'download';
-    pointer-events: all;
-    font-family: 'Open Sans', sans-serif;
-  }
-
-</style>
 <div>
   {#if showHeader}
     <Header {toggleMenu}/>
@@ -131,3 +103,32 @@
     </Modal>
   {/if}
 </div>
+
+<style>
+  .btn::before {
+    content: '';
+    padding: 0 .25rem 0;
+    font-size: .75rem;
+    color: rgb(90, 90, 90);
+    background: rgba(255,255,255,0.7);
+    border-radius: 3px;
+  }
+  .btn:hover::before {
+    color: rgb(66, 125, 253);
+  }
+  .share::before {
+    content: 'share';
+    pointer-events: all;
+  }
+  .contact::before {
+    content: 'contact';
+    position: absolute;
+    right: 1.75rem;
+    pointer-events: all;
+  }
+  .download::before {
+    content: 'download';
+    pointer-events: all;
+    font-family: 'Open Sans', sans-serif;
+  }
+</style>
