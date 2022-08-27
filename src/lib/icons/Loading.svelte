@@ -1,3 +1,11 @@
+<script>
+  export let classList = '';
+</script>
+
+<div class="container">
+  <div class={`loader ${classList}`}>Loading...</div>
+</div>
+
 <style>
   .container {
     display: flex;
@@ -15,7 +23,6 @@
   animation: load 1.8s infinite ease-in-out;
 }
 .loader {
-  color: rgb(129, 129, 129);
   font-size: 10px;
   margin: auto auto;
   position: relative;
@@ -47,7 +54,3 @@
   }
 }
 </style>
-
-<div class="container">
-  <div class="loader">Loading...</div>
-</div>
