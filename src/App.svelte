@@ -91,16 +91,16 @@
     <Home {selectModal} classList="vscroll-item" />
     {#if $data}
       <Section classList="vscroll-item" index={1} sectionTitle={$data.headers[1]}>
-        <Experience bind:closeAllDetails {data} />
+        <Experience bind:closeAllDetails />
       </Section>
       <Section classList="vscroll-item" index={2} sectionTitle={'Projects'}>
-        <Projects {data} />
+        <Projects />
       </Section>
       <Section classList="vscroll-item" index={3} sectionTitle={'Skills'}>
-        <Skills {data} />
+        <Skills />
       </Section>
       <Section classList="vscroll-item" index={4} sectionTitle={$data.headers[3]}>
-        <About {sectionsLoaded} {data} />
+        <About {sectionsLoaded} />
       </Section>
     {:else}
       <div class="h-screen w-screen"/>

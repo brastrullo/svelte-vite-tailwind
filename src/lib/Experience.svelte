@@ -1,4 +1,5 @@
 <script>
+  import { data } from './utils/store';
   import { writable } from 'svelte/store';
   import { onMount } from 'svelte';
   import { fly, fade } from 'svelte/transition';
@@ -7,7 +8,6 @@
   import InfoCircle from './icons/iCircle.svelte';
   import debounce from 'lodash.debounce';
   import throttle from 'lodash.throttle';
-  export let data;
   let hscrollContainer;
   let containerRect;
   let currentIndex;
@@ -76,7 +76,7 @@
     }
   };
 
-  const imgPos = ['right top', 'right top', 'center', 'left top'];
+  const imgPos = ['right top', 'center', 'right top', 'center', 'left top'];
   const isLastCarouselPosition = (i) =>
     i !== null && i === $data.work.length - 1;
 
