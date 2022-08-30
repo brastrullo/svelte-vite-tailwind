@@ -19,6 +19,9 @@ export const isOmniOpen = writable(false);
 export const pageIndex = writable(undefined);
 export const prevPageIndex = writable(undefined);
 
+const NUM_OF_EXPS = 5;
+const BODY_ITEMS = NUM_OF_EXPS + 3;
+
 const transformer = ({
   body,
   website,
@@ -41,7 +44,7 @@ const transformer = ({
   headers: body[0].items.map((obj) => obj.section_header),
   highlights: body[1].items,
   skills: body[2].items,
-  work: [...Array(4).keys()].map((item, i) => ({
+  work: [...Array(NUM_OF_EXPS).keys()].map((item, i) => ({ // FIX: update n in Array(n).keys() to not require being updated manually above (NUM_OF_EXPS)
     ...body[3 + i].primary,
     skills: body[3 + i].primary['skills-csv'].split(',').map((el) => el.trim()),
     otherSkills: body[3 + i].primary['skills2-csv']
@@ -49,10 +52,10 @@ const transformer = ({
       : '',
     details: body[3 + i].items,
   })),
-  development: body[7].items,
-  volunteer: body[8].items,
-  education: body[9].items[0],
-  interests: body[10].items.map((obj) => obj.item),
+  development: body[BODY_ITEMS].items, // FIX: brainstorm - feels dirty
+  volunteer: body[BODY_ITEMS + 1].items,
+  education: body[BODY_ITEMS + 2].items[0],
+  interests: body[BODY_ITEMS + 3].items.map((obj) => obj.item),
   social,
   icons: icons.body.reduce(
     (icons, obj) => ({ ...icons, [obj.primary.set]: obj.items }),
