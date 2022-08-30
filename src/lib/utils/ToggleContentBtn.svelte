@@ -1,4 +1,5 @@
 <script>
+  export let classList = '';
   export let show = false;
   export let callback = (args) => console.log('no callback provided');
   const toggle = () => {
@@ -6,7 +7,7 @@
     callback(show);
   };
 </script>
-<div>
+<div class={`${classList}`}>
   <div on:click={toggle}>
     <slot name="button">
       Provide Button
