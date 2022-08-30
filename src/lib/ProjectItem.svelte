@@ -1,7 +1,7 @@
 <script>
   export let project;
   export let colour;
-  export let classList;
+  export let classList = '';
 </script>
 
 <style>
