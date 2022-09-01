@@ -143,7 +143,7 @@
     {#each $data.work as work, i}
       <div
         data-index={i}
-        class={`container-${i} justify-start align-top inline-block h-full border-box mr-2 px-4 ${$reloading ? 'opacity-0' : ''}`}
+        class={`container-${i} relative justify-start align-top inline-block h-full border-box mr-2 px-4 ${$reloading ? 'opacity-0' : ''}`}
       >
         <article
           data-index={i}
@@ -157,16 +157,12 @@
             <p class="text-3xl whitespace-normal text-white">{work.position}</p>
             <span class="text-sm text-gray-200">{work.company}</span>
           </div>
+          <div style={`background: no-repeat center url(${work.sub_img.url})`} class={`logo-${i} animate-pulse absolute inset-0 m-[auto] max-h-1/2 w-4/5 drop-shadow opacity-60 hover:opacity-80`}/>
           {#if $objectArr.length > 0 && $objectArr[i].show}
             <div
               transition:fly={{ y: 500 }}
               class="text-container bg-white rounded-lg bg-opacity-90 px-6 py-4 relative bottom-0 cursor-default z-0"
             >
-              <img
-                class="h-12 w-auto"
-                src={work.sub_img.url}
-                alt={work.sub_img.url}
-              />
               <div class="flex flex-col my-2">
                 {#each work.details as details}
                   <p class="whitespace-normal text-sm text-left my-2">
